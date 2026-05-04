@@ -1,0 +1,40 @@
+/* CreateNotice.css */
+
+.custom-textarea-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-textarea-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-textarea-scroll::-webkit-scrollbar-thumb {
+  background: #cbd5e1; /* slate-300 */
+  border-radius: 10px;
+}
+.custom-textarea-scroll::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8; /* slate-400 */
+}
+
+/* Animated stripes for the upload progress bar */
+.progress-stripes {
+  background-image: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.15) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.15) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-size: 1rem 1rem;
+  animation: progress-stripes-anim 1s linear infinite;
+}
+
+@keyframes progress-stripes-anim {
+  from {
+    background-position: 1rem 0;
+  }
+  to {
+    background-position: 0 0;
+  }
+}

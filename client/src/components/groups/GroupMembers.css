@@ -1,0 +1,50 @@
+.modal-glass-overlay {
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 60;
+}
+
+.modal-glass-content {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 40px rgba(79, 70, 229, 0.1);
+  border-radius: 24px;
+}
+
+.member-row {
+  background: #ffffff;
+  border: 1px solid #f1f5f9;
+  border-radius: 16px;
+  transition: all 0.2s ease;
+}
+
+.member-row:hover {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+}
+
+.custom-select-mini {
+  background-color: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #475569;
+  padding: 0.25rem 1.5rem 0.25rem 0.5rem;
+  transition: all 0.2s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.25rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+}
+
+.custom-select-mini:focus {
+  outline: none;
+  border-color: #818cf8;
+  box-shadow: 0 0 0 2px rgba(129, 140, 248, 0.2);
+}
+

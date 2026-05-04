@@ -1,0 +1,78 @@
+/* Import highly premium font (Optional: Ensure you have Plus Jakarta Sans or Inter set in your project) */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+.notice-board-wrapper {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Scrollbar for high-end look inside Modals */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(241, 245, 249, 0.5); /* Tailwind slate-100/50 */
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(199, 210, 254, 1); /* Tailwind indigo-200 */
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(129, 140, 248, 1); /* Tailwind indigo-400 */
+}
+
+/* Smooth Entrance Animations */
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-down {
+  animation: fadeInDown 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Better clamping for long texts in the board */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+}
+
+/* Ensure glassmorphism performs well across browsers */
+.backdrop-blur-3xl {
+  backdrop-filter: blur(64px);
+  -webkit-backdrop-filter: blur(64px);
+}
+.backdrop-blur-md {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Keep Print Styles Clean */
+@media print {
+  .notice-actions,
+  .btn-icon,
+  .file-actions,
+  button {
+    display: none !important;
+  }
+  
+  .notice-card {
+    break-inside: avoid;
+    box-shadow: none !important;
+    border: 1px solid #ddd !important;
+    background: white !important;
+  }
+}

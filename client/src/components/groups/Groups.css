@@ -1,0 +1,42 @@
+/* Animated subtle background for the whole dashboard */
+.dashboard-container {
+  min-height: 100vh;
+  background-color: #f8fafc;
+  background-image: 
+    radial-gradient(at 40% 20%, hsla(253,16%,7%,0.05) 0px, transparent 50%),
+    radial-gradient(at 80% 0%, hsla(226,100%,75%,0.15) 0px, transparent 50%),
+    radial-gradient(at 0% 50%, hsla(263,83%,74%,0.15) 0px, transparent 50%);
+  background-attachment: fixed;
+}
+
+.glass-nav {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.premium-tab {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.premium-tab::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #4f46e5, #7c3aed);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.premium-tab.active::after {
+  transform: scaleX(1);
+}

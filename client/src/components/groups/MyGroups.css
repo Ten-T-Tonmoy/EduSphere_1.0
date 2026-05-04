@@ -1,0 +1,31 @@
+.premium-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 1);
+  box-shadow: 0 10px 40px -10px rgba(79, 70, 229, 0.08);
+  border-radius: 20px;
+  padding: 1.5rem;
+}
+
+.group-card-item {
+  background: #ffffff;
+  border: 1px solid rgba(231, 235, 244, 0.8);
+  border-radius: 16px;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.group-card-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 28px rgba(79, 70, 229, 0.1), 0 10px 10px rgba(79, 70, 229, 0.05);
+  border-color: rgba(79, 70, 229, 0.2);
+}
+
+.btn-outline-premium {
+  transition: all 0.2s ease;
+  background: transparent;
+}
+.btn-outline-premium:hover {
+  background: linear-gradient(135deg, #eef2ff 0%, #faf5ff 100%);
+  transform: scale(1.02);
+}

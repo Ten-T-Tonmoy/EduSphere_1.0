@@ -1,0 +1,170 @@
+/* GroupManagement.css - Premium UI Styles */
+
+.group-management {
+  min-height: 100vh;
+  background: linear-gradient(145deg, #f6f9fc 0%, #eef2f7 100%);
+  position: relative;
+}
+
+.group-management::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 300px;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+  z-index: 0;
+}
+
+/* Glass Header */
+.glass-header {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 40;
+}
+
+/* Premium Tabs */
+.premium-tabs {
+  display: inline-flex;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 60px;
+  padding: 0.5rem;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+}
+
+.premium-tab {
+  padding: 0.75rem 1.75rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #4b5563;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.premium-tab:hover {
+  background: rgba(255, 255, 255, 0.9);
+  color: #1f2937;
+  transform: translateY(-1px);
+}
+
+.premium-tab.active {
+  background: white;
+  color: #4f46e5;
+  box-shadow: 0 8px 20px -5px rgba(79, 70, 229, 0.3);
+}
+
+/* User Avatar */
+.user-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #6366f1, #8b5cf6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 1.1rem;
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.user-avatar:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 28px rgba(99, 102, 241, 0.5);
+}
+
+/* Premium Dropdown */
+.premium-dropdown {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  padding: 0.5rem;
+  animation: dropdownFade 0.2s ease;
+}
+
+@keyframes dropdownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Content Card (wraps the page components) */
+.content-card {
+  background: white;
+  border-radius: 32px;
+  padding: 2rem;
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(4px);
+}
+
+/* Premium Modal */
+.premium-modal {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 32px;
+  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.3);
+  animation: modalFadeIn 0.3s ease;
+}
+
+.notice-board-modal {
+  background: white;
+  border-radius: 36px;
+  box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  max-width: 900px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .premium-tabs {
+    flex-wrap: wrap;
+    border-radius: 30px;
+    padding: 0.4rem;
+  }
+  .premium-tab {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+  .content-card {
+    padding: 1rem;
+  }
+}

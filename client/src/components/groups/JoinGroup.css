@@ -1,0 +1,42 @@
+.action-card {
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(243, 244, 246, 1);
+  padding: 2rem;
+}
+
+.premium-input {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.premium-input:focus {
+  background: #ffffff;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+  transform: translateY(-1px);
+}
+
+.btn-gradient {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  color: white;
+  border-radius: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(79, 70, 229, 0.25);
+}
+
+.btn-gradient:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(79, 70, 229, 0.35);
+}
+
+.btn-gradient:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+  box-shadow: none;
+}

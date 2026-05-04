@@ -1,0 +1,22 @@
+.sidebar-request-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+  border-radius: 24px;
+  padding: 1.5rem;
+}
+
+.mini-request-item {
+  background: #ffffff;
+  border: 1px solid rgba(231, 235, 244, 0.8);
+  border-radius: 16px;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.mini-request-item:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 10px 20px rgba(79, 70, 229, 0.08);
+  border-color: rgba(79, 70, 229, 0.2);
+}
