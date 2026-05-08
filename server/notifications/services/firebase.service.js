@@ -1,15 +1,16 @@
 const admin = require("firebase-admin");
-const serviceAccount = require("../config/firebase-service-account.json");
+// const serviceAccount = require("../config/firebase-service-account.json");
 const NotificationToken = require("../models/NotificationToken");
 const NotificationLog = require("../models/NotificationLog");
-const serviceAccount = process.env.process.env.FIREBASE_SERVICE_ACCOUNT_JSON;
 
 if (!admin.apps.length) {
+  // ✅ PARSE the JSON string into an object
+  const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_JSON);
+
   admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
   });
 }
-
 class FirebaseService {
   async sendToUsers(
     userIds,
