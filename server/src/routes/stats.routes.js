@@ -5,7 +5,7 @@ const { auth } = require("../middleware/Auth");
 const Attendance = require("../models/GroupAttendance");
 const Expense = require("../models/Expense");
 const Task = require("../models/Task");
-const Note = require("../models/Note"); 
+const Note = require("../models/Note");
 const Message = require("../models/Message");
 const Notice = require("../models/Notice");
 const Course = require("../models/Course");
@@ -14,7 +14,10 @@ const Group = require("../models/Group");
 //--------------------auth ----------------------------------------
 
 function guardSelf(req, res, next) {
-  if (req.user._id.toString() !== req.params.userId && req.user.role !== "admin") {
+  if (
+    req.user._id.toString() !== req.params.userId &&
+    req.user.role !== "admin"
+  ) {
     return res.status(403).json({ success: false, message: "Forbidden" });
   }
   next();
@@ -27,11 +30,8 @@ router.get("/:userId", auth, guardSelf, async (req, res) => {
     const uid = req.params.userId;
 
     // Querying groups where the user is a member
-    const groups = await Group.find(
-      { "members.user": uid },
-      "_id name",
-    ).lean();
-    
+    const groups = await Group.find({ "members.user": uid }, "_id name").lean();
+
     const groupIds = groups.map((g) => g._id);
 
     //------------------------parallel------------
@@ -48,7 +48,7 @@ router.get("/:userId", auth, guardSelf, async (req, res) => {
 
         Task.find({ user: uid })
           .populate("relatedCourse", "name code")
-          .select("relatedCourse status title dueDate completed createdAt updatedAt")
+          .select("category status title dueDate completed createdAt updatedAt")
           .lean(),
 
         Note.find({ $or: [{ user: uid }, { sharedWith: uid }] })
@@ -75,7 +75,7 @@ router.get("/:userId", auth, guardSelf, async (req, res) => {
         attendance,
         expenses,
         tasks,
-        notes, 
+        notes,
         materials: [],
         messages,
         notices,

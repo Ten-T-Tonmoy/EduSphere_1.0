@@ -60,19 +60,35 @@ const TasksPage = () => {
     }
   };
 
+  // const fetchData = async () => {
+  //   try {
+  //     const [classRes] = await Promise.all([api.get("/classrooms")]);
+  //     setClassrooms(classRes.data);
+  //     if (classRes.data.length > 0) {
+  //       const syllabusRes = await api.get(
+  //         `/syllabus/classroom/${classRes.data[0]._id}`,
+  //       );
+  //       setCourses(syllabusRes.data);
+  //     }
+  //   } catch (err) {}
+  // };
+
   const fetchData = async () => {
     try {
-      const [classRes] = await Promise.all([api.get("/classrooms")]);
-      setClassrooms(classRes.data);
-      if (classRes.data.length > 0) {
+      const classRes = await api.get("/groups/my-groups");
+      const groups = classRes.data.groups || []; // ✅ unwrap { success, groups }
+      setClassrooms(groups);
+
+      if (groups.length > 0) {
         const syllabusRes = await api.get(
-          `/syllabus/classroom/${classRes.data[0]._id}`,
+          `/syllabus/group/${groups[0].group._id}`, // ✅ nested .group._id
         );
         setCourses(syllabusRes.data);
       }
-    } catch (err) {}
+    } catch (err) {
+      console.error("fetchData error:", err);
+    }
   };
-
   const handleSave = async () => {
     try {
       let finalDueDate = form.dueDate;

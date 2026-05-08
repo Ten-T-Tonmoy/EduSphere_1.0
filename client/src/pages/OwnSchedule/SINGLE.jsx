@@ -103,7 +103,7 @@ const SchedulePage = () => {
       const today = new Date().toISOString().split("T")[0];
       const [schedRes, clsRes, teachRes] = await Promise.all([
         api.get(`${endpoint}?date=${today}`),
-        api.get("/classrooms"),
+        api.get("/my-groups"),
         api.get("/users/teachers"),
       ]);
       //-------------------------------approved extra class------------------------
