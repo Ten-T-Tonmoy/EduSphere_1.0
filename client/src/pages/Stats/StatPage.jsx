@@ -63,7 +63,7 @@ import { useAuth } from "../../context/Authcontext.jsx";
 import KpiCard from "./KPI.jsx";
 //-------------------configs-----------------------
 const API_BASE =
-  process.env.VITE_API_URL?.replace("/api", "/api/stats") ||
+  import.meta.env.VITE_API_URL?.replace("/api", "/api/stats") ||
   "http://localhost:5000/api/stats";
 
 //control---------------
@@ -149,7 +149,7 @@ export default function StatsPage() {
   console.log("Processed stats:", stats);
 
   return (
-    <div className="px-4 sm:px-6 lg:px-8 py-6 max-w-7xl mx-auto space-y-10">
+    <div className="sm:px-4  lg:px-8 py-6 max-w-7xl mx-auto space-y-10">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">My Stats</h1>
@@ -163,7 +163,7 @@ export default function StatsPage() {
       </div>
 
       {/* ------------------------k prfm indc--------------------------------------- */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-3 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-3 gap-3">
         <KpiCard
           Icon={CalendarCheck2}
           label="Attendance"

@@ -6,13 +6,16 @@ const connectDB = require("./config/database.js");
 require("dotenv").config();
 const cookieParser = require("cookie-parser");
 
-const matrixAttendanceRoutes = require('./routes/matrixAttendanceRoutes');
+const matrixAttendanceRoutes = require("./routes/matrixAttendanceRoutes");
 
 const app = express();
 const httpServer = createServer(app);
 
 // 1. Unified CORS and Socket Setup (Single Declaration)
-const CLIENT_URL = process.env.CLIENT_URL || "http://localhost:5173";
+const CLIENT_URL =
+  process.env.ENVIRONMENT === "production"
+    ? process.env.CLIENT_URL
+    : "http://localhost:5173";
 
 const io = new Server(httpServer, {
   cors: {
@@ -48,20 +51,28 @@ app.use("/api/syllabus", require("./routes/Syllabus.routes.js"));
 app.use("/api/calendar", require("./routes/Calendar.routes.js"));
 app.use("/api/stats", require("./routes/stats.routes.js"));
 app.use("/api/notes", require("./routes/noteRoutes.js"));
-app.use("/api/notes", require("./routes/sharedNotesRoutes.js")); 
+app.use("/api/notes", require("./routes/sharedNotesRoutes.js"));
 app.use("/api/teachers", require("./routes/Users.routes.js"));
 app.use("/api/groups", require("./routes/groupRoutes.js"));
 app.use("/api/notices", require("./routes/noticeRoutes.js"));
 app.use("/api/attendance", require("./routes/groupAttendanceRoutes.js"));
-app.use("/api/important-materials", require("./routes/importantMaterialRoutes.js"));
-app.use("/api/matrix-attendance", require("./routes/matrixAttendanceRoutes.js"));
-app.use('/api/interactive-matrix', matrixAttendanceRoutes);
+app.use(
+  "/api/important-materials",
+  require("./routes/importantMaterialRoutes.js"),
+);
+app.use(
+  "/api/matrix-attendance",
+  require("./routes/matrixAttendanceRoutes.js"),
+);
+app.use("/api/interactive-matrix", matrixAttendanceRoutes);
 app.get("/api/health", (req, res) => res.status(200).json({ status: "ok" }));
 app.use("/api/chat", require("./routes/chatRoutes.js"));
-app.use('/api/contributors', require('./routes/Contributor.routes'));
+app.use("/api/contributors", require("./routes/Contributor.routes"));
 
-app.use('/api/notifications', require('../notifications/routes/notification.routes'));
-
+app.use(
+  "/api/notifications",
+  require("../notifications/routes/notification.routes"),
+);
 
 // --------------------------- Socket.io -------------------------------
 io.on("connection", (socket) => {

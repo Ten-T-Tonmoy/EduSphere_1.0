@@ -49,20 +49,36 @@ const DepartmentSchedulePage = () => {
 
   useEffect(() => {
     // Only fetch if the user is a teacher or admin
-    if (department && (user?.role === 'teacher' || user?.role === 'admin')) {
+    if (department && (user?.role === "teacher" || user?.role === "admin")) {
       fetchDeptSchedule();
     }
   }, [department, user?.role]);
 
   // RESTRICT ACCESS: Block students from viewing the Dept Routine
-  if (user?.role !== 'teacher' && user?.role !== 'admin') {
+  if (user?.role !== "teacher" && user?.role !== "admin") {
     return (
       <div className="flex flex-col items-center justify-center py-32 animate-in fade-in zoom-in duration-300">
         <div className="bg-red-50 p-6 rounded-full mb-4">
-          <svg className="w-12 h-12 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+          <svg
+            className="w-12 h-12 text-red-500"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+            ></path>
+          </svg>
         </div>
-        <h2 className="text-3xl font-bold text-gray-900 mb-2">Access Restricted</h2>
-        <p className="text-gray-500 font-medium">Only Teachers can view the Department Routine.</p>
+        <h2 className="text-3xl font-bold text-gray-900 mb-2">
+          Access Restricted
+        </h2>
+        <p className="text-gray-500 font-medium">
+          Only Teachers can view the Department Routine.
+        </p>
       </div>
     );
   }
@@ -74,11 +90,11 @@ const DepartmentSchedulePage = () => {
       const res = await api.get(
         `/schedules/department/${encodeURIComponent(department)}?date=${today}`,
       );
-      
+      console.log(res);
       // Ensure backend 'group' populates map properly to 'classroom' variables for UI components
-      const formattedSlots = res.data.slots.map(slot => ({
+      const formattedSlots = res.data.slots.map((slot) => ({
         ...slot,
-        classroom: slot.group || slot.classroom
+        classroom: slot.group || slot.classroom,
       }));
       setData({ slots: formattedSlots, classrooms: res.data.classrooms });
     } catch (err) {
@@ -133,7 +149,7 @@ const DepartmentSchedulePage = () => {
         requestedDate: showExtraModal.requestedDate || extraForm.requestedDate,
         dayOfWeek: showExtraModal.dayOfWeek,
         startTime: showExtraModal.startTime,
-        endTime: showExtraModal.endTime
+        endTime: showExtraModal.endTime,
       });
       setShowExtraModal(null);
       setCourses([]);
@@ -200,8 +216,8 @@ const DepartmentSchedulePage = () => {
     const targetDate = new Date();
     targetDate.setDate(targetDate.getDate() + (dayIdx - targetDate.getDay()));
     const yyyy = targetDate.getFullYear();
-    const mm = String(targetDate.getMonth() + 1).padStart(2, '0');
-    const dd = String(targetDate.getDate()).padStart(2, '0');
+    const mm = String(targetDate.getMonth() + 1).padStart(2, "0");
+    const dd = String(targetDate.getDate()).padStart(2, "0");
     const localDateStr = `${yyyy}-${mm}-${dd}`;
 
     const eIdx = TIME_SLOTS.indexOf(time) + 1;
@@ -214,7 +230,7 @@ const DepartmentSchedulePage = () => {
       endTime: calculatedEndTime,
       classroom: classroom,
       status: "empty",
-      requestedDate: localDateStr
+      requestedDate: localDateStr,
     });
     fetchCoursesFor(classroom._id);
   };
@@ -258,7 +274,7 @@ const DepartmentSchedulePage = () => {
                 isToday={isToday}
                 isCollapsed={isCollapsed}
                 onToggle={() => toggleDay(day)}
-                classrooms={data.classrooms} 
+                classrooms={data.classrooms}
                 grid={grid}
                 coveredCells={coveredCells}
                 rowGroups={rowGroups}

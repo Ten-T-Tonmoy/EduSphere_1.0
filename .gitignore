@@ -2,6 +2,7 @@
 # Node modules
 # =========================
 node_modules/
+project-output/
 */node_modules/
 server/notifications/config/firebase-service-account.json
 # =========================

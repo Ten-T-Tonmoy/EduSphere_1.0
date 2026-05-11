@@ -20,7 +20,8 @@ const StudentAttendanceView = ({ groupId, groupName, onClose }) => {
     // Socket for real-time updates
     const token = localStorage.getItem("token");
     const socket = io(
-      process.env.VITE_API_URL?.replace("/api", "") || "http://localhost:5000",
+      import.meta.env.VITE_API_URL?.replace("/api", "") ||
+        "http://localhost:5000",
       {
         auth: { token },
       },

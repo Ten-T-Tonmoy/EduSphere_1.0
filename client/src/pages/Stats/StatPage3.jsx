@@ -37,7 +37,7 @@ import {
 import { useAuth } from "../../context/Authcontext";
 // const API_BASE = "/api/stats";
 const API_BASE =
-  process.env.VITE_API_URL?.replace("/api", "/api/stats") ||
+  import.meta.env.VITE_API_URL?.replace("/api", "/api/stats") ||
   "http://localhost:5000/api/stats";
 
 const COLORS = {
