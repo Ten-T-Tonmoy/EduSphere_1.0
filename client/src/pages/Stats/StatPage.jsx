@@ -62,7 +62,9 @@ import TasksSection from "./TaskSec.jsx";
 import { useAuth } from "../../context/Authcontext.jsx";
 import KpiCard from "./KPI.jsx";
 //-------------------configs-----------------------
-const API_BASE = "http://localhost:5000/api/stats";
+const API_BASE =
+  process.env.VITE_API_URL?.replace("/api", "/api/stats") ||
+  "http://localhost:5000/api/stats";
 
 //control---------------
 const USE_DUMMY = false;
@@ -85,16 +87,16 @@ export default function StatsPage() {
         const { default: DUMMY } = await import("./statsDummy.js");
         raw = DUMMY.data;
       } else {
-        const res = await api.get(`/stats/${USER_ID}`); 
-      raw = res.data.data;
+        const res = await api.get(`/stats/${USER_ID}`);
+        raw = res.data.data;
       }
       //----------process----------
       setStats(processAll(raw));
     } catch (e) {
-    setError(e.response?.data?.message || e.message || "Network error");
-  } finally {
-    setLoading(false);
-  }
+      setError(e.response?.data?.message || e.message || "Network error");
+    } finally {
+      setLoading(false);
+    }
   }
 
   useEffect(() => {

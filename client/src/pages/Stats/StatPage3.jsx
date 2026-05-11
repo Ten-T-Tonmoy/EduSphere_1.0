@@ -36,7 +36,9 @@ import {
 
 import { useAuth } from "../../context/Authcontext";
 // const API_BASE = "/api/stats";
-const API_BASE = "http://localhost:5000/api/stats";
+const API_BASE =
+  process.env.VITE_API_URL?.replace("/api", "/api/stats") ||
+  "http://localhost:5000/api/stats";
 
 const COLORS = {
   blue: "#3b82f6",

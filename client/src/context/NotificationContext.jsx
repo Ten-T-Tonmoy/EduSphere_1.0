@@ -80,7 +80,7 @@ export const NotificationProvider = ({ children }) => {
   useEffect(() => {
     if (!user || !token) return;
 
-    const socketUrl = process.env.REACT_APP_API_URL?.replace('/api', '') || 'http://localhost:5000';
+    const socketUrl = process.env.VITE_API_URL?.replace('/api', '') || 'http://localhost:5000';
 
     const connectSocket = () => {
       const newSocket = io(socketUrl, {
