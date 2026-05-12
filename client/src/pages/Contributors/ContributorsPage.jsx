@@ -79,14 +79,14 @@ const ContributorsPage = () => {
 
   if (loading)
     return (
-      <div className="h-screen flex items-center justify-center bg-white text-indigo-600 font-bold tracking-widest animate-pulse">
+      <div className="min-h-screen flex items-center justify-center bg-white text-indigo-600 font-bold tracking-widest animate-pulse">
         <UniLifeLoader size="0.8" />
         <span className="ml-2">SYNCHRONIZING TEAM DATA...</span>
       </div>
     );
 
   return (
-    <div className="min-h-screen lg:h-screen bg-slate-50 text-slate-900 overflow-y-auto lg:overflow-hidden font-sans flex flex-col relative">
+    <div className="min-h-screen  bg-slate-50 text-slate-900 overflow-y-auto lg:overflow-hidden font-sans flex flex-col relative">
       {/* Subtle Background Pattern */}
       <div
         className="absolute inset-0 opacity-[0.03] pointer-events-none z-0"
@@ -136,7 +136,7 @@ const ContributorsPage = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="w-full max-w-[1400px] grid grid-cols-1 sm:grid-cols-2 gap-7 h-full max-h-[600px]"
+          className="w-full max-w-[800px] grid grid-cols-1 sm:grid-cols-2 gap-7 h-full max-h-[600px]"
         >
           {members.slice(0, 2).map((member) => (
             <motion.div

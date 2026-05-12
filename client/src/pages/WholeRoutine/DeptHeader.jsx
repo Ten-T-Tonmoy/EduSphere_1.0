@@ -7,7 +7,7 @@ const DeptHeader = ({ department, onSearch, deptInput, setDeptInput }) => {
   };
 
   return (
-    <div className="flex items-start justify-between mb-6 flex-wrap gap-4">
+    <div className="flex justify-center  sm:items-start sm:justify-between mb-6 flex-wrap gap-4">
       <div>
         <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
           <Building2 className="w-6 h-6 text-blue-600" />

@@ -115,7 +115,7 @@ const ManageGroupsPage = () => {
       </div>
 
       {/* Content Area */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-100 sm:p-6">
+      <div className="  sm:p-6">
         {activeTab === "my-groups" && (
           <MyGroups onViewNotices={handleViewNotices} />
         )}

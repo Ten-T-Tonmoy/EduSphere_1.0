@@ -80,7 +80,7 @@ const RegisterPage = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="w-full max-w-xl bg-white/80 backdrop-blur-xl border border-white rounded-[2.5rem] shadow-2xl p-8 md:p-12 relative z-10"
+        className="w-full max-w-xl bg-white/80 backdrop-blur-xl border border-white rounded-lg shadow-2xl p-8 md:p-12 relative z-10"
       >
         <div className="text-center mb-8">
           <motion.div

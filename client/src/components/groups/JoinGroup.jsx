@@ -64,7 +64,7 @@ const JoinGroup = ({ onRequestSent }) => {
   };
 
   return (
-    <div className="premium-form-card relative overflow-hidden p-6 sm:p-8 rounded-3xl border border-emerald-100/60 shadow-[0_10px_40px_rgba(16,185,129,0.08)] bg-white/90 backdrop-blur-xl">
+    <div className=" relative overflow-hidden p-6 sm:p-8 rounded-3xl border border-emerald-100/60 shadow-[0_10px_40px_rgba(16,185,129,0.08)] bg-white/90 backdrop-blur-xl">
       {/* Background Glow */}
       <div className="absolute -top-16 -right-16 w-40 h-40 bg-emerald-200/30 blur-3xl rounded-full pointer-events-none" />
       <div className="absolute -bottom-16 -left-16 w-40 h-40 bg-teal-200/30 blur-3xl rounded-full pointer-events-none" />
@@ -72,7 +72,7 @@ const JoinGroup = ({ onRequestSent }) => {
       {/* Header */}
       <div className="relative mb-8">
         <div className="flex items-center gap-3 mb-3">
-          <div className="h-12 w-12 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center shadow-lg shadow-emerald-500/20">
+          <div className="h-12 w-12 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center shadow-lg shadow-emerald-500/20">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6 text-white"
@@ -91,7 +91,7 @@ const JoinGroup = ({ onRequestSent }) => {
 
           <div>
             <h3 className="text-3xl font-black tracking-tight bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
-              Join Existing Group
+              Join Group
             </h3>
             <p className="text-sm text-gray-500 font-medium mt-1">
               Enter the credentials to send a join request.
@@ -102,7 +102,7 @@ const JoinGroup = ({ onRequestSent }) => {
 
       {/* Error Alert */}
       {error && (
-        <div className="relative mb-6 rounded-2xl border-l-4 border-l-red-500 border border-red-200 bg-red-50/90 backdrop-blur-sm px-5 py-4 shadow-sm">
+        <div className="relative mb-6 rounded-lg border-l-4 border-l-red-500 border border-red-200 bg-red-50/90 backdrop-blur-sm px-5 py-4 shadow-sm">
           <div className="flex items-start gap-3">
             <div className="flex-shrink-0 mt-0.5">
               <svg
@@ -144,7 +144,7 @@ const JoinGroup = ({ onRequestSent }) => {
 
       {/* Success Alert */}
       {success && (
-        <div className="relative mb-6 rounded-2xl border-l-4 border-l-emerald-500 border border-emerald-200 bg-emerald-50/90 backdrop-blur-sm px-5 py-4 shadow-sm">
+        <div className="relative mb-6 rounded-lg border-l-4 border-l-emerald-500 border border-emerald-200 bg-emerald-50/90 backdrop-blur-sm px-5 py-4 shadow-sm">
           <div className="flex items-start gap-3">
             <div className="flex-shrink-0 mt-0.5">
               <svg
@@ -217,10 +217,10 @@ const JoinGroup = ({ onRequestSent }) => {
               value={formData.groupName}
               onChange={handleChange}
               required
-              className="w-full rounded-2xl border border-gray-200/80 bg-white/80 px-5 py-3.5 text-gray-800 shadow-sm transition-all duration-300 focus:border-emerald-400 focus:ring-4 focus:ring-emerald-100 outline-none"
-              placeholder="e.g. Computer Science 101"
+              className="w-full rounded-lg border border-gray-200/80 bg-white/80 px-5 py-3.5 text-gray-800 shadow-sm transition-all duration-300 focus:border-emerald-400 focus:ring-4 focus:ring-emerald-100 outline-none"
+              placeholder="e.g. ICE Batch 25"
             />
-            <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-emerald-500/0 to-teal-500/0 opacity-0 transition-opacity duration-300 pointer-events-none group-focus-within:opacity-100" />
+            <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-emerald-500/0 to-teal-500/0 opacity-0 transition-opacity duration-300 pointer-events-none group-focus-within:opacity-100" />
           </div>
         </div>
 
@@ -256,7 +256,7 @@ const JoinGroup = ({ onRequestSent }) => {
               value={formData.pin}
               onChange={handleChange}
               required
-              className="w-full rounded-2xl border border-gray-200/80 bg-white/80 px-5 py-3.5 text-gray-800 tracking-[0.35em] font-mono shadow-sm transition-all duration-300 focus:border-teal-400 focus:ring-4 focus:ring-teal-100 outline-none"
+              className="w-full rounded-lg border border-gray-200/80 bg-white/80 px-5 py-3.5 text-gray-800 tracking-[0.35em] font-mono shadow-sm transition-all duration-300 focus:border-teal-400 focus:ring-4 focus:ring-teal-100 outline-none"
               placeholder="••••••••"
             />
           </div>
@@ -289,7 +289,7 @@ const JoinGroup = ({ onRequestSent }) => {
               name="requestedRole"
               value={formData.requestedRole}
               onChange={handleChange}
-              className="w-full rounded-2xl border border-gray-200/80 bg-white/80 px-5 py-3.5 text-gray-800 appearance-none cursor-pointer shadow-sm transition-all duration-300 focus:border-emerald-400 focus:ring-4 focus:ring-emerald-100 outline-none"
+              className="w-full rounded-lg border border-gray-200/80 bg-white/80 px-5 py-3.5 text-gray-800 appearance-none cursor-pointer shadow-sm transition-all duration-300 focus:border-emerald-400 focus:ring-4 focus:ring-emerald-100 outline-none"
             >
               {getAvailableRoles().map((role) => (
                 <option
@@ -345,7 +345,7 @@ const JoinGroup = ({ onRequestSent }) => {
         <button
           type="submit"
           disabled={loading}
-          className={`relative group w-full overflow-hidden rounded-2xl bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600 px-5 py-4 font-bold text-white shadow-xl shadow-emerald-500/20 transition-all duration-300 hover:scale-[1.015] hover:shadow-2xl hover:shadow-emerald-500/30 active:scale-[0.99] ${
+          className={`relative group w-full overflow-hidden rounded-lg bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600 px-5 py-4 font-bold text-white shadow-xl shadow-emerald-500/20 transition-all duration-300 hover:scale-[1.015] hover:shadow-2xl hover:shadow-emerald-500/30 active:scale-[0.99] ${
             loading ? "opacity-70 cursor-wait" : ""
           }`}
         >

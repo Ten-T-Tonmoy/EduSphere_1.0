@@ -251,9 +251,21 @@ const TasksPage = () => {
       {/* Stats Cards */}
       <div className="grid grid-cols-3 gap-4 mb-6">
         {[
-          ["todo", "To Do", "bg-white border border-gray-200"],
-          ["in_progress", "In Progress", "bg-blue-50 border border-blue-100"],
-          ["done", "Done", "bg-green-50 border border-green-100"],
+          [
+            "todo",
+            "To Do",
+            "bg-white/40 backdrop-blur-md border border-white/30 rounded-2xl px-5 py-2.5 md:py-4 font-medium text-gray-700 shadow-lg shadow-black/5 hover:shadow-xl hover:bg-white/60 transition-all duration-300",
+          ],
+          [
+            "in_progress",
+            "In Progress",
+            "bg-blue-400/20 backdrop-blur-md border border-blue-300/40 rounded-2xl px-5 py-2.5 md:py-4 font-medium text-blue-800 shadow-lg shadow-blue-500/10 hover:shadow-xl hover:bg-blue-400/30 transition-all duration-300",
+          ],
+          [
+            "done",
+            "Done",
+            "bg-green-400/20 backdrop-blur-md border border-green-300/40 rounded-2xl px-5 py-2.5 md:py-4 font-medium text-green-800 shadow-lg shadow-green-500/10 hover:shadow-xl hover:bg-green-400/30 transition-all duration-300",
+          ],
         ].map(([s, label, bg]) => (
           <div
             key={s}
@@ -270,18 +282,24 @@ const TasksPage = () => {
         ))}
       </div>
 
-      <div className="flex gap-2 mb-4 bg-gray-100 p-1.5 rounded-xl w-max">
+      {/* -------------------mini bar 2 - all -todo - inprogress- done------------------------------- */}
+      <div className="flex gap-2 mb-6 mx-auto bg-gray-100/90 backdrop-blur-sm p-1.5 rounded-xl w-max shadow-md border border-gray-200/50">
         {["all", "todo", "in_progress", "done"].map((f) => (
           <button
             key={f}
             onClick={() => setFilter(f)}
-            className={`px-4 py-1.5 rounded-lg text-sm font-semibold transition-all ${filter === f ? "bg-white text-primary-600 shadow-sm" : "text-gray-500 hover:text-gray-700"}`}
+            className={`px-5 py-1.5 rounded-lg text-sm font-semibold transition-all duration-200 ${
+              filter === f
+                ? "bg-white text-blue-600 shadow-lg ring-2 ring-blue-500/40 scale-[1.02]"
+                : "text-gray-500 hover:text-gray-800 hover:bg-white/60"
+            }`}
           >
             {f === "all" ? "All" : f.replace("_", " ")}
           </button>
         ))}
       </div>
 
+      {/* ----------------------task cards----------------------------- */}
       {loading ? (
         <div className="flex justify-center py-10">
           <UniLifeLoader size="md" />
@@ -296,7 +314,7 @@ const TasksPage = () => {
               </p>
             </div>
           ) : (
-            // Render from sortedTasks array
+            // ----------------from sorted----------------------
             sortedTasks.map((task) => {
               const isHabit = task.description?.includes("[HABIT]");
               const cleanDesc = task.description?.replace("[HABIT]", "").trim();
@@ -304,89 +322,150 @@ const TasksPage = () => {
               return (
                 <div
                   key={task._id}
-                  className={`bg-white border border-gray-100 rounded-xl p-4 flex items-start gap-4 group transition-all hover:shadow-md ${task.status === "done" ? "opacity-60 bg-gray-50 border-dashed" : ""}`}
+                  className={`group relative flex items-start gap-4 rounded-xl border p-4 transition-all duration-200
+      ${
+        task.status === "done"
+          ? "border-dashed border-gray-200 bg-gray-50 opacity-60"
+          : "border-gray-100 bg-white hover:border-gray-200 hover:shadow-sm"
+      }`}
                 >
+                  {/* Left accent bar */}
+                  <div
+                    className={`absolute left-0 top-0 bottom-0 w-[3px] rounded-l-xl
+        ${
+          task.priority === "high"
+            ? "bg-red-400"
+            : task.priority === "medium"
+              ? "bg-amber-400"
+              : task.status === "in_progress"
+                ? "bg-blue-400"
+                : task.status === "done"
+                  ? "bg-emerald-400"
+                  : "bg-gray-200"
+        }`}
+                  />
+
+                  {/* Status toggle */}
                   <button
                     onClick={() => toggleStatus(task)}
-                    className={`mt-1 w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-all ${task.status === "done" ? "bg-green-500 border-green-500 text-white" : task.status === "in_progress" ? "border-blue-500 bg-blue-50" : "border-gray-300 hover:border-primary-400"}`}
+                    className={`mt-0.5 flex h-[26px] w-[26px] flex-shrink-0 items-center justify-center rounded-full border-[1.5px] transition-all duration-200
+        ${
+          task.status === "done"
+            ? "border-emerald-500 bg-emerald-500 text-white"
+            : task.status === "in_progress"
+              ? "border-blue-400 bg-blue-50"
+              : "border-gray-300 hover:border-gray-400"
+        }`}
                   >
-                    {task.status === "done" && <Check className="w-4 h-4" />}
+                    {task.status === "done" && (
+                      <Check className="w-3.5 h-3.5" />
+                    )}
                     {task.status === "in_progress" && (
-                      <div className="w-2.5 h-2.5 rounded-full bg-blue-600 animate-pulse" />
+                      <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
                     )}
                   </button>
 
+                  {/* Main content */}
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 flex-wrap">
+                    <div className="flex items-center gap-2 flex-wrap mb-1">
                       <p
-                        className={`text-lg font-bold text-gray-900 ${task.status === "done" ? "line-through text-gray-500" : ""}`}
+                        className={`text-[15px] font-medium leading-snug
+          ${task.status === "done" ? "line-through text-gray-400" : "text-gray-900"}`}
                       >
                         {task.title}
                       </p>
                       {isHabit && (
-                        <span className="bg-purple-100 text-purple-700 text-[10px] px-2 py-0.5 rounded-full font-bold tracking-wide uppercase flex items-center gap-1">
-                          <Repeat className="w-3 h-3" /> Habit
+                        <span className="inline-flex items-center gap-1 rounded-full bg-violet-50 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-violet-700 border border-violet-100">
+                          <Repeat className="w-2.5 h-2.5" /> Habit
                         </span>
                       )}
                     </div>
 
                     {cleanDesc && (
-                      <p className="text-sm text-gray-500 mt-1 truncate">
+                      <p className="text-[13px] text-gray-400 mb-2.5 truncate">
                         {cleanDesc}
                       </p>
                     )}
 
-                    <div className="flex items-center gap-2 mt-2.5 flex-wrap">
+                    <div className="flex items-center gap-1.5 flex-wrap">
+                      {/* Priority badge */}
                       <span
-                        className={`badge ${priorityColors[task.priority]}`}
+                        className={`inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[11px] font-medium border
+          ${
+            task.priority === "high"
+              ? "bg-red-50 text-red-800 border-red-200"
+              : task.priority === "medium"
+                ? "bg-amber-50 text-amber-800 border-amber-200"
+                : "bg-green-50 text-green-800 border-green-200"
+          }`}
                       >
                         {task.priority}
                       </span>
-                      <span className={`badge ${statusColors[task.status]}`}>
+
+                      {/* Status badge */}
+                      <span
+                        className={`inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[11px] font-medium border
+          ${
+            task.status === "done"
+              ? "bg-emerald-50 text-emerald-800 border-emerald-200"
+              : task.status === "in_progress"
+                ? "bg-blue-50 text-blue-800 border-blue-200"
+                : "bg-gray-100 text-gray-600 border-gray-200"
+          }`}
+                      >
                         {task.status.replace("_", " ")}
                       </span>
+
+                      {/* Category badge */}
                       {task.category !== "general" && (
-                        <span className="badge bg-indigo-50 text-indigo-700 border border-indigo-100">
+                        <span className="inline-flex items-center rounded-full bg-violet-50 px-2.5 py-0.5 text-[11px] font-medium text-violet-700 border border-violet-100">
                           {task.category}
                         </span>
                       )}
 
+                      {/* Due date */}
                       {task.dueDate && (
                         <span
-                          className={`text-xs font-semibold flex items-center gap-1 px-2 py-1 rounded-md ${new Date(task.dueDate) < new Date() && task.status !== "done" ? "bg-red-50 text-red-600" : "bg-gray-100 text-gray-500"}`}
+                          className={`inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[11px] font-medium border
+            ${
+              new Date(task.dueDate) < new Date() && task.status !== "done"
+                ? "bg-red-50 text-red-700 border-red-200"
+                : "bg-gray-100 text-gray-500 border-gray-200"
+            }`}
                         >
                           <Clock className="w-3 h-3" />
                           {new Date(task.dueDate).toLocaleDateString()}
                           {task.dueDate.includes("T") &&
                           task.dueDate.split("T")[1] !== "00:00:00.000Z"
-                            ? ` • ${new Date(task.dueDate).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}`
+                            ? ` · ${new Date(task.dueDate).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}`
                             : ""}
                         </span>
                       )}
                     </div>
                   </div>
 
-                  <div className="flex flex-col sm:flex-row gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                  {/* Action buttons */}
+                  <div className="flex flex-col gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-150">
                     {task.status !== "done" && (
                       <button
                         onClick={() => startPomodoro(task)}
-                        className="p-2 bg-indigo-50 text-indigo-600 hover:bg-indigo-100 hover:text-indigo-700 rounded-lg transition-colors"
                         title="Start Focus Timer"
+                        className="flex h-[30px] w-[30px] items-center justify-center rounded-lg border border-violet-100 bg-violet-50 text-violet-600 transition-colors hover:bg-violet-100"
                       >
-                        <Target className="w-4 h-4" />
+                        <Target className="w-3.5 h-3.5" />
                       </button>
                     )}
                     <button
                       onClick={() => openEdit(task)}
-                      className="p-2 bg-gray-50 text-gray-500 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-colors"
+                      className="flex h-[30px] w-[30px] items-center justify-center rounded-lg border border-gray-100 bg-gray-50 text-gray-400 transition-colors hover:border-gray-200 hover:text-gray-600"
                     >
-                      <Edit2 className="w-4 h-4" />
+                      <Edit2 className="w-3.5 h-3.5" />
                     </button>
                     <button
                       onClick={() => handleDelete(task._id)}
-                      className="p-2 bg-red-50 text-red-400 hover:text-red-600 hover:bg-red-100 rounded-lg transition-colors"
+                      className="flex h-[30px] w-[30px] items-center justify-center rounded-lg border border-red-100 bg-red-50 text-red-400 transition-colors hover:bg-red-100 hover:text-red-600"
                     >
-                      <Trash2 className="w-4 h-4" />
+                      <Trash2 className="w-3.5 h-3.5" />
                     </button>
                   </div>
                 </div>

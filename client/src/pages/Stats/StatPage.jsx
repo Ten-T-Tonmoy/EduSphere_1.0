@@ -149,7 +149,7 @@ export default function StatsPage() {
   console.log("Processed stats:", stats);
 
   return (
-    <div className="sm:px-4  lg:px-8 py-6 max-w-7xl mx-auto space-y-10">
+    <div className="sm:px-4  lg:px-8 py-6 max-w-7xl mx-auto space-y-4 sm:space-y-8">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">My Stats</h1>
@@ -163,20 +163,23 @@ export default function StatsPage() {
       </div>
 
       {/* ------------------------k prfm indc--------------------------------------- */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-3 gap-3">
+
+      <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-3 gap-3">
+        <div className="sm:block hidden">
+          <KpiCard
+            Icon={Wallet}
+            label="Spent this month"
+            value={`৳${kpis.totalSpentThisMonth.toLocaleString()}`}
+            sub="all categories"
+            accent="orange"
+          />
+        </div>
         <KpiCard
           Icon={CalendarCheck2}
           label="Attendance"
           value={`${kpis.overallAttendance}%`}
           sub="overall"
           accent="green"
-        />
-        <KpiCard
-          Icon={Wallet}
-          label="Spent this month"
-          value={`৳${kpis.totalSpentThisMonth.toLocaleString()}`}
-          sub="all categories"
-          accent="orange"
         />
         <KpiCard
           Icon={CheckSquare}
@@ -199,12 +202,23 @@ export default function StatsPage() {
           sub="consecutive days"
           accent="amber"
         />
+        <div className="sm:block hidden">
+          <KpiCard
+            Icon={FileText}
+            label="Materials"
+            value={kpis.materialsThisWeek}
+            sub="added this week"
+            accent="blue"
+          />
+        </div>
+      </div>
+      <div className="sm:hidden  gap-3">
         <KpiCard
-          Icon={FileText}
-          label="Materials"
-          value={kpis.materialsThisWeek}
-          sub="added this week"
-          accent="blue"
+          Icon={Wallet}
+          label="Spent this month"
+          value={`৳${kpis.totalSpentThisMonth.toLocaleString()}`}
+          sub="all categories"
+          accent="orange"
         />
       </div>
 
