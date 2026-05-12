@@ -146,10 +146,10 @@ const ExpensesPage = () => {
         ))}
       </div>
 
-      {/* Summary cards */}
+      {/*------------------------big Summary cards--------------------- */}
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-6">
-        <div className="card bg-green-50">
-          <div className="flex items-center gap-2 mb-1">
+        <div className="card bg-green-50 text-center">
+          <div className="flex items-center justify-center gap-2 mb-1">
             <TrendingUp className="w-4 h-4 text-green-600" />
             <span className="text-sm font-medium text-green-700">Income</span>
           </div>
@@ -157,8 +157,8 @@ const ExpensesPage = () => {
             ৳{totalIncome.toLocaleString()}
           </p>
         </div>
-        <div className="card bg-red-50">
-          <div className="flex items-center gap-2 mb-1">
+        <div className="card bg-red-50 text-center">
+          <div className="flex items-center justify-center gap-2 mb-1">
             <TrendingDown className="w-4 h-4 text-red-600" />
             <span className="text-sm font-medium text-red-700">Expenses</span>
           </div>
@@ -167,7 +167,7 @@ const ExpensesPage = () => {
           </p>
         </div>
         <div
-          className={`card col-span-2 text-center ${balance >= 0 ? "bg-blue-50" : "bg-orange-50"}`}
+          className={`card col-span-2 sm:col-span-1 text-center ${balance >= 0 ? "bg-blue-50" : "bg-orange-50"}`}
         >
           <div className="flex items-center justify-center gap-2 mb-1">
             <ArrowUpDown

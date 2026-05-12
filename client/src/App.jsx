@@ -26,7 +26,7 @@ import TestPage from "./pages/Stats/TestPage.jsx";
 
 import SettingsPage from "./pages/SettingsPage.jsx";
 
-import NotesPage from "./pages/notes/page/NotesPage.jsx"; 
+import NotesPage from "./pages/notes/page/NotesPage.jsx";
 import ManageGroupsPage from "./pages/ManageGroupsPage.jsx";
 
 import ContributorsPage from "./pages/Contributors/ContributorsPage.jsx";
@@ -43,7 +43,7 @@ const PrivateRoute = ({ children, roles }) => {
   const { user, loading } = useAuth();
   if (loading)
     return (
-      <div className="flex h-screen items-center justify-center">
+      <div className="flex min-h-svh items-center justify-center">
         <UniLifeLoader size="1.5" />
       </div>
     );
@@ -82,14 +82,14 @@ const App = () => {
           <Route path="attendance" element={<AttendancePage />} />
           <Route path="extra-requests" element={<ExtraClassRequestPage />} />
           <Route path="notfound" element={<UnderConstructionDetailed />} />
-          
+
           <Route path="notes/:classroomId" element={<NotesPage />} />
           <Route path="notes" element={<NotesPage />} />
           <Route path="manage-groups" element={<ManageGroupsPage />} />
-          
+
           <Route path="chat" element={<ChatPage />} />
           <Route path="chat/:classroomId" element={<ChatPage />} />
-          
+
           <Route path="notices/:classroomId" element={<NoticesPage />} />
           <Route path="tasks" element={<TasksPage />} />
           <Route path="test" element={<TestPage />} />

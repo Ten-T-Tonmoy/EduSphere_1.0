@@ -71,7 +71,7 @@ const RegisterPage = () => {
   const set = (k) => (e) => setForm((p) => ({ ...p, [k]: e.target.value }));
 
   return (
-    <div className="min-h-screen bg-slate-50 flex items-center justify-center p-6 relative overflow-hidden font-sans">
+    <div className="min-min-h-svh bg-slate-50 flex items-center justify-center p-6 relative overflow-hidden font-sans">
       {/* Decorative Background Blobs */}
       <div className="absolute top-0 -right-20 w-96 h-96 bg-indigo-100 rounded-full blur-[100px] opacity-60" />
       <div className="absolute bottom-0 -left-20 w-96 h-96 bg-blue-50 rounded-full blur-[100px] opacity-60" />

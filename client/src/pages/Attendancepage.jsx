@@ -313,7 +313,7 @@ const AttendancePage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 pb-20 pt-8 font-sans text-slate-900 relative overflow-x-hidden">
+    <div className="min-min-h-svh bg-slate-50 pb-20 pt-8 font-sans text-slate-900 relative overflow-x-hidden">
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-indigo-100/40 rounded-full blur-[120px] -z-10" />
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-50/40 rounded-full blur-[120px] -z-10" />
 

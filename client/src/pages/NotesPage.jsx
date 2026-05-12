@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import api from '../services/api';
-import TeacherSelector from '../components/notes/TeacherSelector';
-import NoteList from '../components/notes/NoteList';
-import NoteForm from '../components/notes/NoteForm';
-import PDFPreviewModal from '../components/notes/PDFPreviewModal';
-import UniLifeLoader from '../components/Loader/UniLifeLoader';
+import React, { useState, useEffect } from "react";
+import api from "../services/api";
+import TeacherSelector from "../components/notes/TeacherSelector";
+import NoteList from "../components/notes/NoteList";
+import NoteForm from "../components/notes/NoteForm";
+import PDFPreviewModal from "../components/notes/PDFPreviewModal";
+import UniLifeLoader from "../components/Loader/UniLifeLoader";
 
 const NotesPage = () => {
   const [teachers, setTeachers] = useState([]);
@@ -12,16 +12,16 @@ const NotesPage = () => {
   const [notes, setNotes] = useState([]);
   const [isOwner, setIsOwner] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [showPDFPreview, setShowPDFPreview] = useState(false);
 
   useEffect(() => {
     const fetchTeachers = async () => {
       try {
-        const res = await api.get('/teachers');
+        const res = await api.get("/teachers");
         setTeachers(res.data.teachers);
       } catch (err) {
-        setError('Failed to load teachers');
+        setError("Failed to load teachers");
       }
     };
     fetchTeachers();
@@ -42,7 +42,7 @@ const NotesPage = () => {
       setNotes(res.data.notes);
       setIsOwner(res.data.isOwner || false);
     } catch (err) {
-      setError(err.response?.data?.message || 'Failed to load notes');
+      setError(err.response?.data?.message || "Failed to load notes");
     } finally {
       setLoading(false);
     }
@@ -51,34 +51,34 @@ const NotesPage = () => {
   const handleAddNote = async (noteData) => {
     try {
       const formData = new FormData();
-      formData.append('teacherId', selectedTeacher._id);
-      formData.append('content', noteData.content);
-      noteData.attachments.forEach(file => {
-        formData.append('attachments', file);
+      formData.append("teacherId", selectedTeacher._id);
+      formData.append("content", noteData.content);
+      noteData.attachments.forEach((file) => {
+        formData.append("attachments", file);
       });
 
-      const res = await api.post('/notes', formData, {
-        headers: { 'Content-Type': 'multipart/form-data' }
+      const res = await api.post("/notes", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
       });
       setNotes([res.data.note, ...notes]);
     } catch (err) {
-      setError(err.response?.data?.message || 'Failed to add note');
+      setError(err.response?.data?.message || "Failed to add note");
     }
   };
 
   const handleDeleteNote = async (noteId) => {
-    if (!window.confirm('Delete this note?')) return;
+    if (!window.confirm("Delete this note?")) return;
     try {
       await api.delete(`/notes/${noteId}`);
-      setNotes(notes.filter(n => n._id !== noteId));
+      setNotes(notes.filter((n) => n._id !== noteId));
     } catch (err) {
-      setError(err.response?.data?.message || 'Failed to delete note');
+      setError(err.response?.data?.message || "Failed to delete note");
     }
   };
 
   const handleGeneratePDF = () => {
     if (notes.length === 0) {
-      alert('No notes to generate PDF');
+      alert("No notes to generate PDF");
       return;
     }
     setShowPDFPreview(true);
@@ -86,21 +86,26 @@ const NotesPage = () => {
 
   const handlePDFGenerate = async (selectedNotes) => {
     try {
-      const res = await api.post(`/notes/teacher/${selectedTeacher._id}/generate-pdf`, {
-        noteIds: selectedNotes.map(n => n._id)
-      });
-      window.open(res.data.pdfUrl, '_blank');
+      const res = await api.post(
+        `/notes/teacher/${selectedTeacher._id}/generate-pdf`,
+        {
+          noteIds: selectedNotes.map((n) => n._id),
+        },
+      );
+      window.open(res.data.pdfUrl, "_blank");
       setShowPDFPreview(false);
     } catch (err) {
-      setError(err.response?.data?.message || 'Failed to generate PDF');
+      setError(err.response?.data?.message || "Failed to generate PDF");
     }
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-min-h-svh bg-gray-50">
       <main className="container mx-auto px-4 py-8 max-w-7xl">
         <div className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 lg:p-8">
-          <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-6">Notes</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-6">
+            Notes
+          </h2>
 
           {error && (
             <div className="mb-4 bg-red-50 border-l-4 border-red-500 p-4 rounded">
@@ -119,7 +124,11 @@ const NotesPage = () => {
               <div className="mt-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                 <h3 className="text-xl font-semibold text-gray-700">
                   Notes for {selectedTeacher.name}
-                  {!isOwner && <span className="ml-2 text-sm text-indigo-600">(Shared with you)</span>}
+                  {!isOwner && (
+                    <span className="ml-2 text-sm text-indigo-600">
+                      (Shared with you)
+                    </span>
+                  )}
                 </h3>
                 {isOwner && (
                   <button
@@ -127,8 +136,18 @@ const NotesPage = () => {
                     disabled={notes.length === 0}
                     className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2"
                   >
-                    <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    <svg
+                      className="h-5 w-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                      />
                     </svg>
                     <span>Generate PDF</span>
                   </button>
@@ -142,7 +161,11 @@ const NotesPage = () => {
                   <UniLifeLoader size="md" />
                 </div>
               ) : (
-                <NoteList notes={notes} onDelete={handleDeleteNote} isOwner={isOwner} />
+                <NoteList
+                  notes={notes}
+                  onDelete={handleDeleteNote}
+                  isOwner={isOwner}
+                />
               )}
             </>
           )}

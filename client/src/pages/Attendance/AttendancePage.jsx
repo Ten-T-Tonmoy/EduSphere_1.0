@@ -1,5 +1,5 @@
 // import React, { useEffect, useState } from "react";
-// import { useParams } from "react-router-dom"; 
+// import { useParams } from "react-router-dom";
 // import { useAuth } from "../../context/Authcontext"; // Path corrected for src/pages/ level
 // import api from "../../utils/Api"; // Path corrected for src/pages/ level
 // import { motion, AnimatePresence } from "framer-motion";
@@ -19,8 +19,8 @@
 
 // const AttendancePage = () => {
 //   const { user } = useAuth();
-//   const { groupId: urlGroupId } = useParams(); 
-//   const [groups, setGroups] = useState([]); 
+//   const { groupId: urlGroupId } = useParams();
+//   const [groups, setGroups] = useState([]);
 //   const [selectedGroup, setSelectedGroup] = useState("");
 //   const [records, setRecords] = useState([]);
 //   const [summary, setSummary] = useState([]);
@@ -31,9 +31,9 @@
 
 //   const [courses, setCourses] = useState([]);
 //   const [selectedCourse, setSelectedCourse] = useState("");
-  
+
 //   // Sequential numbering matrix data structure
-//   const [matrixData, setMatrixData] = useState({ activeSessions: [], students: [] }); 
+//   const [matrixData, setMatrixData] = useState({ activeSessions: [], students: [] });
 //   const [loadingMatrix, setLoadingMatrix] = useState(false);
 
 //   const isTeacher = ["teacher", "admin"].includes(user?.role);
@@ -42,7 +42,7 @@
 //   useEffect(() => {
 //     const fetchInitialData = async () => {
 //       try {
-//         const r = await api.get("/groups/my-groups"); 
+//         const r = await api.get("/groups/my-groups");
 //         const myGroups = r.data.groups?.map(item => item.group).filter(Boolean) || [];
 //         setGroups(myGroups);
 
@@ -71,11 +71,11 @@
 //     if (selectedGroup) {
 //       const fetchCourses = async () => {
 //         try {
-//           const res = await api.get(`/syllabus/group/${selectedGroup}`); 
+//           const res = await api.get(`/syllabus/group/${selectedGroup}`);
 //           let allCourses = res.data;
-          
+
 //           if (isTeacher) {
-//             allCourses = allCourses.filter(c => 
+//             allCourses = allCourses.filter(c =>
 //               String(c.teacher?._id || c.teacher) === String(user._id)
 //             );
 //           }
@@ -92,14 +92,14 @@
 //   useEffect(() => {
 //     if (selectedGroup && selectedCourse && tab === "matrix") {
 //       setLoadingMatrix(true);
-      
+
 //       // Hits the dedicated semester-view endpoint
 //       api.get(`/interactive-matrix/${selectedGroup}?courseId=${selectedCourse}`)
 //          .then(res => {
 //             // Backend now returns activeSessions and data
-//             setMatrixData({ 
-//               activeSessions: res.data.activeSessions || [], 
-//               students: res.data.data || [] 
+//             setMatrixData({
+//               activeSessions: res.data.activeSessions || [],
+//               students: res.data.data || []
 //             });
 //          })
 //          .catch(err => {
@@ -142,7 +142,7 @@
 
 //   const markAttendance = async (slot, status) => {
 //     try {
-//       await api.post("/group-attendance/mark", { 
+//       await api.post("/group-attendance/mark", {
 //         groupId: selectedGroup,
 //         studentId: user._id,
 //         courseId: slot.course?._id || slot.course,
@@ -159,12 +159,12 @@
 //   const itemVars = { hidden: { opacity: 0, y: 15 }, show: { opacity: 1, y: 0 } };
 
 //   return (
-//     <div className="min-h-screen bg-slate-50 pb-20 pt-8 font-sans text-slate-900 relative overflow-x-hidden">
+//     <div className="min-min-h-svh bg-slate-50 pb-20 pt-8 font-sans text-slate-900 relative overflow-x-hidden">
 //       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-indigo-100/40 rounded-full blur-[120px] -z-10" />
 //       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-50/40 rounded-full blur-[120px] -z-10" />
 
 //       <motion.div variants={containerVars} initial="hidden" animate="show" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
 //         {/* Header Section */}
 //         <motion.div variants={itemVars} className="bg-slate-900 rounded-[2.5rem] p-8 md:p-12 shadow-2xl flex flex-col md:flex-row justify-between items-start md:items-center gap-8 relative overflow-hidden mb-10 text-white">
 //           <div className="absolute top-0 right-0 w-full h-full opacity-10 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-indigo-500 to-transparent pointer-events-none" />
@@ -338,9 +338,9 @@
 //                               const status = student.attendance[dateKey];
 //                               return (
 //                                 <td key={dateKey} className="px-4 py-4 border-b border-l border-slate-100 text-center">
-//                                   {status === "present" || status === "attended" ? <span className="text-emerald-500 font-black text-sm">P</span> : 
-//                                    status === "absent" || status === "missed" ? <span className="text-rose-500 font-black text-sm">A</span> : 
-//                                    status === "late" ? <span className="text-amber-500 font-black text-sm">L</span> : 
+//                                   {status === "present" || status === "attended" ? <span className="text-emerald-500 font-black text-sm">P</span> :
+//                                    status === "absent" || status === "missed" ? <span className="text-rose-500 font-black text-sm">A</span> :
+//                                    status === "late" ? <span className="text-amber-500 font-black text-sm">L</span> :
 //                                    <span className="text-slate-200">-</span>}
 //                                 </td>
 //                               );

@@ -81,7 +81,7 @@ const ManageGroupsPage = () => {
   }
 
   return (
-    <div className="sm:p-4 lg:p-6 bg-gray-50 min-h-screen">
+    <div className="sm:p-4 lg:p-6 bg-gray-50 min-min-h-svh">
       <h2 className="text-2xl font-bold text-gray-800 mb-6">Manage Groups</h2>
 
       {/* Navigation Tabs */}

@@ -252,7 +252,7 @@ const DashboardPage = () => {
   // NEW PERFECTED DASHBOARD LOADING UI
   if (loading) {
     return (
-      <div className="min-h-screen bg-slate-50/50 flex flex-col items-center justify-center sm:p-6">
+      <div className="min-min-h-svh bg-slate-50/50 flex flex-col items-center justify-center sm:p-6">
         <div className="relative flex flex-col items-center">
           {/* Your exact UniLifeLoader component */}
           <UniLifeLoader size="1.2" />
@@ -278,7 +278,7 @@ const DashboardPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50/50 pb-16 font-sans text-slate-900">
+    <div className="min-min-h-svh bg-slate-50/50 pb-16 font-sans text-slate-900">
       <div className="max-w-7xl mx-auto  sm:px-6 lg:px-8 pt-6 sm:pt-8 space-y-6 sm:space-y-8 animate-in fade-in slide-in-from-bottom-2 duration-500">
         {/* 1. REFINED WELCOME BANNER */}
         <div className="bg-slate-900 rounded-2xl sm:rounded-3xl p-6 sm:p-10 shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-6 relative overflow-hidden">

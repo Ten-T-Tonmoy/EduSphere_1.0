@@ -79,14 +79,14 @@ const ContributorsPage = () => {
 
   if (loading)
     return (
-      <div className="min-h-screen flex items-center justify-center bg-white text-indigo-600 font-bold tracking-widest animate-pulse">
+      <div className="min-min-h-svh flex items-center justify-center bg-white text-indigo-600 font-bold tracking-widest animate-pulse">
         <UniLifeLoader size="0.8" />
         <span className="ml-2">SYNCHRONIZING TEAM DATA...</span>
       </div>
     );
 
   return (
-    <div className="min-h-screen  bg-slate-50 text-slate-900 overflow-y-auto lg:overflow-hidden font-sans flex flex-col relative">
+    <div className="min-min-h-svh  bg-slate-50 text-slate-900 overflow-y-auto lg:overflow-hidden font-sans flex flex-col relative">
       {/* Subtle Background Pattern */}
       <div
         className="absolute inset-0 opacity-[0.03] pointer-events-none z-0"
